@@ -1,0 +1,21 @@
+<div *ngIf="grupo" class="card m-1" style="width: 18rem;">
+    <div class="card-header text-center">
+        <h3 class="d-inline">Grupo {{grupo.nombre}}</h3>
+        <button class="btn btn-sm btn-danger float-end" (click)="quitarGrupo()">Quitar</button>
+    </div>
+
+    <div class="card-body">
+        <div class="input-group">
+            <select class="form-select form-select-sm" [(ngModel)]="equipoSeleccionado" [disabled]="!hayEquipos">
+                <option *ngFor="let equipo of equipos" [ngValue]="equipo">{{equipo.nombre}}</option>
+            </select>
+            <button class="btn btn-success btn-sm" (click)="addEquipo()" [disabled]="!hayEquipos">Agregar</button>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let equipo of grupo.equipos">{{equipo.nombre}}
+            <button class="btn btn-danger btn-sm float-end" (click)="removeEquipo(equipo)">Quitar</button>
+        </li>
+    </ul>
+
+</div>

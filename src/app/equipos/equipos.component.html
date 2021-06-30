@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="input-group my-3">
+        <span class="input-group-text" id="addon1">Nombre</span>
+        <input type="text" class="form-control" aria-describedby="addon1" [(ngModel)]="equipo.nombre" />
+        <span class="input-group-text" id="addon2">Categoria</span>
+        <select class="form-select" [(ngModel)]="equipo.categoria">
+            <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.nombre}}</option>
+        </select>
+        <button class="btn btn-success" (click)="add()">Agregar</button>
+    </div>
+    <div class="card-group">
+        <app-equipos-por-categoria *ngFor="let categoria of categorias" [categoria]="categoria">
+        </app-equipos-por-categoria>
+    </div>
+</div>

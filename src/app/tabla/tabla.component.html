@@ -1,0 +1,31 @@
+<div *ngIf="tabla">
+    <h3>Grupo {{tabla.nombreGrupo}}</h3>
+    <table class="table table-striped table-primary table-hover">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>PTS</th>
+                <th>PJ</th>
+                <th>G</th>
+                <th>E</th>
+                <th>P</th>
+                <th>GF</th>
+                <th>GC</th>
+                <th>DG</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let fila of tabla.filas">
+                <td>{{fila.nombre}}</td>
+                <td>{{fila.puntos}}</td>
+                <td>{{fila.jugados}}</td>
+                <td>{{fila.ganados}}</td>
+                <td>{{fila.empatados}}</td>
+                <td>{{fila.perdidos}}</td>
+                <td>{{fila.golesAFavor}}</td>
+                <td>{{fila.golesEnContra}}</td>
+                <td>{{fila.diferenciaGol}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

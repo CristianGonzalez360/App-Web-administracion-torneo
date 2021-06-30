@@ -1,0 +1,49 @@
+<div class="container" *ngIf="creacion">
+    <div *ngIf="partido" class="input-group">
+        <select [(ngModel)]="partido.local" class="form-select">
+            <option *ngFor="let equipo of equipos" [ngValue]="equipo">{{equipo.nombre}}</option>
+        </select>
+        <input type="number" min="0" [(ngModel)]="partido.golesLocal" class="form-control" />
+        <span class="input-group-text">VS</span>
+        <input type="number" min="0" [(ngModel)]="partido.golesVisitante" class="form-control" />
+        <select [(ngModel)]="partido.visitante" class="form-select">
+            <option *ngFor="let equipo of equipos" [ngValue]="equipo">{{equipo.nombre}}</option>
+        </select>
+        <input [ngModel]="partido.fechaJugado | date:'yyyy-MM-dd'" (ngModelChange)="partido.fechaJugado = $event"
+            type="date" id="fecha" class="form-control" />
+        <button (click)="addPartido()" class="btn btn-success">Guardar</button>
+    </div>
+</div>
+
+<div class="container" *ngIf="edicion">
+    <div *ngIf="partido" class="row">
+        <div class="col-12 col-md-7">
+            <div class="input-group mb-1">
+                <span class="input-group-text">{{partido.local.nombre}}</span>
+                <input type="number" min="0" [(ngModel)]="partido.golesLocal" class="form-control" />
+                <span class="input-group-text">VS</span>
+                <input type="number" min="0" [(ngModel)]="partido.golesVisitante" class="form-control" />
+                <span class="input-group-text">{{partido.visitante.nombre}}</span>
+            </div>
+        </div>
+        <div class="col-12 col-md-5">
+            <div class="input-group mb-1">
+                <input [ngModel]="partido.fechaJugado | date:'yyyy-MM-dd'"
+                    (ngModelChange)="partido.fechaJugado = $event" type="date" class="form-control" />
+                <button (click)="guardar()" class="btn btn-success">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" *ngIf="!edicion && !creacion">
+    <div *ngIf="partido" class="row">
+        <span class="col col-3 text-center">{{partido.local.nombre}}</span>
+        <span class="col col-1 text-center">{{partido.golesLocal}}</span>
+        <span class="col col-1 text-center">VS</span>
+        <span class="col col-1 text-center">{{partido.golesVisitante}}</span>
+        <span class="col col-3 text-center">{{partido.visitante.nombre}}</span>
+        <span class="col col-auto d-none d-xxl-block text-center">{{partido.fechaJugado | date:'dd-MM-yyyy'}}</span>
+        <button (click)="edicion = true" class="col col-auto btn btn-primary">Editar</button>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="input-group my-3">
+        <span class="input-group-text" id="addon">Nombre:</span>
+        <input type="text" class="form-control" aria-describedby="addon" #nombre />
+        <button type="button" class="btn btn-success" (click)="add(nombre.value); nombre.value=''">Agregar</button>
+    </div>
+    <div class="list-group">
+        <a *ngFor="let categoria of categorias" routerLink="editar/{{categoria.id}}"
+            class="list-group-item list-group-item-action">{{categoria.nombre}}</a>
+    </div>
+</div>

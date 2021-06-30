@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="input-group my-3">
+        <span class="input-group-text" id="addon1">Nombre:</span>
+        <input type="text" class="form-control" aria-describedby="addon1" [(ngModel)]="torneo.nombre" />
+        <span class="input-group-text" id="addon2">Categoria</span>
+        <select class="form-select" [(ngModel)]="torneo.categoria" (ngModelChange)="seleccionar($event)">
+            <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.nombre}}</option>
+        </select>
+        <span class="input-group-text" id="addon3">Fecha de Inicio</span>
+        <input class="form-control" aria-describedby="addon3" [ngModel]="torneo.fechaInicio | date:'yyyy-MM-dd'"
+            (ngModelChange)="torneo.fechaInicio = $event" type="date" />
+        <button class="btn btn-success" (click)="add()">Guardar</button>
+    </div>
+    <button class="btn btn-success" (click)="addGrupo()">Agregar Grupo</button>
+    <div class="card-group">
+        <app-grupo-form *ngFor="let grupo of torneo.grupos" [grupo]="grupo"></app-grupo-form>
+    </div>
+</div>

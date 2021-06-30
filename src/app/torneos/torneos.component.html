@@ -1,0 +1,11 @@
+<div class="container">
+    <a class="btn btn-primary" routerLink="/torneos/nuevo">Crear Torneo</a>
+    <div *ngFor="let torneo of torneos">
+        <h4 class="d-inline align-middle">Torneo {{torneo.nombre}}</h4><a routerLink="/torneo/editar/{{torneo.id}}"
+            class="btn btn-outline-primary m-1">Fechas</a>
+        <div class="card-group">
+            <app-grupo *ngFor="let grupo of torneo.grupos" [grupo]="grupo"></app-grupo>
+        </div>
+        <hr>
+    </div>
+</div>
