@@ -44,6 +44,7 @@
         <span class="col col-1 text-center">{{partido.golesVisitante}}</span>
         <span class="col col-3 text-center">{{partido.visitante.nombre}}</span>
         <span class="col col-auto d-none d-xxl-block text-center">{{partido.fechaJugado | date:'dd-MM-yyyy'}}</span>
-        <button (click)="edicion = true" class="col col-auto btn btn-primary">Editar</button>
+        <button (click)="editar()" class="col col-auto btn btn-primary">Editar</button>
+        <button (click)="eliminar()" class="col col-auto btn btn-danger" style="margin-left: 5px;">Borrar</button>
     </div>
 </div>

@@ -8,7 +8,7 @@ import { Partido } from '../modelo/partido';
   providedIn: 'root'
 })
 export class PartidoService {
-
+  
   partidoUrl:string = 'http://localhost:8081/partido';
 
   httpOptions = {
@@ -54,5 +54,13 @@ export class PartidoService {
       tap(_ => console.log(`updated Categoria id=${partido.id}`)),
       catchError(this.handleError<any>('updateCategoria'))
     )
+  }
+
+  delete(id: number):Observable<Partido>{
+    const url = `${this.partidoUrl}/${id}`;
+    return this.http.delete<Partido>(url, this.httpOptions).pipe(
+      tap(_ => console.log(`deleted Categoria id=${id}`)),
+      catchError(this.handleError<Partido>('deleteCategoria'))
+    );
   }
 }

@@ -49,9 +49,26 @@ export class PartidoComponent implements OnInit {
     }
   }
 
+  editar(){
+    if(this.partido){
+      this.edicion = true;
+    }
+  }
+
   guardar(){
     if(this.partido){
       this.serviciosPartido.update(this.partido).subscribe(_ => this.edicion=false);
+    }
+  }
+
+  eliminar(){
+    if(this.partido){
+      this.serviciosPartido.delete(this.partido.id).subscribe(_ => {
+        if(this.partido){
+          this.serviciosEdicionFecha.borrarPartido(this.partido);
+        }
+        this.edicion=false;
+      });
     }
   }
 }

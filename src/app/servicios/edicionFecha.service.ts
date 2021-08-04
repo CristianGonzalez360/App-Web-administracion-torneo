@@ -21,6 +21,9 @@ export class EdicionFechaService {
   private source4 = new BehaviorSubject<Equipo[]>([]);
   equiposDisponibles = this.source4.asObservable();
 
+  private source5 = new Subject<Partido>();
+  equipoBorrado = this.source5.asObservable();
+
   constructor(
     
   ) { }
@@ -39,5 +42,9 @@ export class EdicionFechaService {
 
   finCreacion() {
     this.source3.next(false);
+  }
+
+  borrarPartido(partido:Partido){
+    this.source5.next(partido);
   }
 }
