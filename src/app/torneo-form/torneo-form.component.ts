@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Categoria } from '../modelo/categoria';
 import { Torneo } from '../modelo/torneo';
 import { CategoriaService } from '../servicios/categoria.service';
@@ -6,6 +6,8 @@ import { EdicionTorneoService } from '../servicios/edicionTorneo.service';
 import { TorneoService } from '../servicios/torneo.service';
 import { Location } from '@angular/common';
 import { Grupo } from '../modelo/grupo';
+import { ActivatedRoute } from '@angular/router';
+import { Equipo } from '../modelo/equipo';
 
 @Component({
   selector: 'app-torneos',
@@ -16,7 +18,7 @@ export class TorneosFormComponent implements OnInit {
 
   categorias: Categoria[] = [];
 
-  @Input() torneo: Torneo = { id: 0, nombre: "", categoria: {} as Categoria, fechaInicio: new Date(), grupos: [] } as Torneo;
+  torneo: Torneo = { id: 0, nombre: "", categoria: {} as Categoria, fechaInicio: new Date(), grupos: [] } as Torneo;
 
   private nombreGrupo: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
@@ -26,7 +28,8 @@ export class TorneosFormComponent implements OnInit {
     private serviciosCategoria: CategoriaService,
     private serviciosTorneo: TorneoService,
     private serviciosEdicionTorneo: EdicionTorneoService,
-    private location: Location
+    private location: Location,
+    private route:ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +40,16 @@ export class TorneosFormComponent implements OnInit {
     });
   }
 
+  getTorneo(){
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if(id){
+      this.serviciosTorneo.get(id).subscribe(torneo =>{
+        this.torneo=torneo;
+        torneo.grupos.forEach(grupo => grupo.equipos.forEach(equipo => this.serviciosEdicionTorneo.quitarEquipo(equipo)));   
+      });
+    }
+  }
+
   getCategorias(): void {
     this.serviciosCategoria.getAll().subscribe(categorias => {
       this.categorias = categorias;
@@ -44,6 +57,7 @@ export class TorneosFormComponent implements OnInit {
         this.torneo.categoria = this.categorias[0];
         this.seleccionar(this.categorias[0]);
       }
+      this.getTorneo();
     });
   }
 
@@ -54,7 +68,7 @@ export class TorneosFormComponent implements OnInit {
 
   addGrupo() {
     if (this.torneo.grupos.length < this.nombreGrupo.length) {
-      let nombreGrupo:string|undefined;
+      var nombreGrupo:string|undefined;
       if(this.nombresBorrados.length){
         nombreGrupo = this.nombresBorrados[0];
         this.nombresBorrados = this.nombresBorrados.filter(nombre => nombre!=nombreGrupo);
@@ -71,5 +85,9 @@ export class TorneosFormComponent implements OnInit {
 
   volver(): void {
     this.location.back();
+  }
+
+  comparar(categoria1: Categoria,categoria2:Categoria):boolean{
+    return categoria1.id==categoria2.id;
   }
 }

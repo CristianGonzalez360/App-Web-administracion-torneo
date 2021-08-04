@@ -3,7 +3,7 @@
         <span class="input-group-text" id="addon1">Nombre:</span>
         <input type="text" class="form-control" aria-describedby="addon1" [(ngModel)]="torneo.nombre" />
         <span class="input-group-text" id="addon2">Categoria</span>
-        <select class="form-select" [(ngModel)]="torneo.categoria" (ngModelChange)="seleccionar($event)">
+        <select class="form-select" [(ngModel)]="torneo.categoria" [compareWith]="comparar" (ngModelChange)="seleccionar($event)">
             <option *ngFor="let categoria of categorias" [ngValue]="categoria">{{categoria.nombre}}</option>
         </select>
         <span class="input-group-text" id="addon3">Fecha de Inicio</span>

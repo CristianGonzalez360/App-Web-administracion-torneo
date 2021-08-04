@@ -26,17 +26,16 @@ export class GrupoFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarEquiposDisponibles();
-    this.servicioEdicionTorneo.categoriaSeleccionada.subscribe(_ => {
-      if (this.grupo) {
+    this.servicioEdicionTorneo.categoriaSeleccionada.subscribe(categoria => {
+      if (this.grupo && this.grupo.equipos.length && this.grupo.equipos[0].categoria.id != categoria.id) {
         this.grupo.equipos = [];
       }
-    }
-    )
+    });
   }
 
   cargarEquiposDisponibles() {
     this.servicioEdicionTorneo.equiposDisponibles.subscribe(equipos => {
-      this.equipos = equipos;
+      this.equipos = equipos;      
       if (this.equipos.length) {
         this.equipoSeleccionado = this.equipos[0];
         this.hayEquipos = true;

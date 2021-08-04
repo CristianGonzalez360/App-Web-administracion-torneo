@@ -34,10 +34,9 @@ export class TorneoComponent implements OnInit {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.serviciosTorneo.get(id).subscribe(torneo => {
       this.torneo = torneo;
-      //this.ordenarGrupos();
       this.cargarTabla();
       this.getFechas(torneo.id);
-      let equipos: Equipo[] = [];
+      var equipos: Equipo[] = [];
       torneo.grupos.forEach(grupo => grupo.equipos.forEach(equipo => equipos.push(equipo)));
       this.serviciosEdicionFecha.setEquipos(equipos);
     });
@@ -62,20 +61,6 @@ export class TorneoComponent implements OnInit {
   cargarTabla() {
     if (this.torneo) {
       this.serviciosTorneo.getTabla(this.torneo.id).subscribe(tablas => this.tablas = tablas);
-    }
-  }
-
-  ordenarGrupos() {
-    if (this.torneo) {
-      this.torneo.grupos = this.torneo.grupos.sort(function (a, b) {
-        if (a.nombre > b.nombre) {
-          return 1;
-        }
-        if (a.nombre < b.nombre) {
-          return -1;
-        }
-        return 0;
-      });
     }
   }
 }

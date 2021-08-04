@@ -8,12 +8,12 @@ import { Partido } from '../modelo/partido';
   providedIn: 'root'
 })
 export class EdicionFechaService {
-  
+
   private source = new Subject<Fecha>();
   fechaSeleccionada = this.source.asObservable();
 
   private source2 = new Subject<Partido>();
-  nuevoPartido  = this.source2.asObservable();
+  nuevoPartido = this.source2.asObservable();
 
   private source3 = new Subject<boolean>();
   creando = this.source3.asObservable();
@@ -25,18 +25,18 @@ export class EdicionFechaService {
   equipoBorrado = this.source5.asObservable();
 
   constructor(
-    
+
   ) { }
 
-  seleccionarFecha(fecha:Fecha):void{
+  seleccionarFecha(fecha: Fecha): void {
     this.source.next(fecha);
   }
 
-  setEquipos(equipos:Equipo[]):void{
-    this.source4.next(equipos);
+  setEquipos(equipos: Equipo[]): void {
+    this.source4.next(this.ordenarEquipos(equipos));
   }
 
-  addPartido(partido:Partido):void{
+  addPartido(partido: Partido): void {
     this.source2.next(partido);
   }
 
@@ -44,7 +44,21 @@ export class EdicionFechaService {
     this.source3.next(false);
   }
 
-  borrarPartido(partido:Partido){
+  borrarPartido(partido: Partido) {
     this.source5.next(partido);
+  }
+
+  ordenarEquipos(equipos: Equipo[]):Equipo[] {
+    var ret:Equipo[] = [];
+    ret = equipos.sort(function (a, b) {
+      if (a.nombre > b.nombre) {
+        return 1;
+      }
+      if (a.nombre < b.nombre) {
+        return -1;
+      }
+      return 0;
+    });
+    return ret;
   }
 }
