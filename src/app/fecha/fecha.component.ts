@@ -25,9 +25,10 @@ export class FechaComponent implements OnInit {
       this.fecha = fecha;
       this.cargarPartidos();
     })
+    this.serviciosPartidos.getEstados().subscribe(estados => this.serviciosEdicionFecha.setEstados(estados))
     this.serviciosEdicionFecha.nuevoPartido.subscribe(partido => this.partidos.push(partido));
     this.serviciosEdicionFecha.creando.subscribe(creando => this.nuevo = creando);
-    this.serviciosEdicionFecha.equipoBorrado.subscribe(borrado => this.partidos = this.partidos.filter(equipo => equipo.id != borrado.id));
+    this.serviciosEdicionFecha.partidoBorrado.subscribe(borrado => this.partidos = this.partidos.filter(equipo => equipo.id != borrado.id));
   }
 
   cargarPartidos(){

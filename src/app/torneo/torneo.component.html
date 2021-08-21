@@ -27,7 +27,7 @@
     </div>
     <hr>
     <div *ngIf="tablas">
-        <h3>Tabla de Posiciones</h3>
+        <h3 class="d-inline">Tabla de Posiciones</h3><button class="btn btn-sm btn-info m-2" (click)="cargarTabla()">Recargar</button>
         <app-tabla *ngFor="let tabla of tablas" [tabla]="tabla"></app-tabla>
     </div>
 </div>

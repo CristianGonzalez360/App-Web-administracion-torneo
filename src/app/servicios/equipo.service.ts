@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Categoria } from '../modelo/categoria';
 import { Equipo } from '../modelo/equipo';
 
@@ -10,7 +11,7 @@ import { Equipo } from '../modelo/equipo';
 })
 export class EquipoService {
 
-  equipoUrl: string = 'http://localhost:8081/equipo';
+  equipoUrl: string = environment.apiUrl + '/equipo';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

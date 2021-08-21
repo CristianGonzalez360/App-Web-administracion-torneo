@@ -3,12 +3,13 @@ import { Categoria } from '../modelo/categoria';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriaService {
-  categoriaUrl:string = 'http://localhost:8081/categoria';
+  categoriaUrl:string = environment.apiUrl + '/categoria';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

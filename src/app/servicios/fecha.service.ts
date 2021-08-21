@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { Fecha } from '../modelo/fecha';
 
 @Injectable({
@@ -9,7 +10,7 @@ import { Fecha } from '../modelo/fecha';
 })
 export class FechaService {
 
-  fechaUrl:string = 'http://localhost:8081/fecha';
+  fechaUrl:string = environment.apiUrl + '/fecha';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

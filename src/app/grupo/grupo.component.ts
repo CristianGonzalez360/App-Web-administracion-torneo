@@ -9,6 +9,7 @@ import { Grupo } from '../modelo/grupo';
 export class GrupoComponent implements OnInit {
 
   @Input() grupo?:Grupo;
+  @Input() idTorneo?:number;
   
   constructor() { }
 

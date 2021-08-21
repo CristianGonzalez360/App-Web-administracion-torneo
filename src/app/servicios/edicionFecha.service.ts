@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { Equipo } from '../modelo/equipo';
 import { Fecha } from '../modelo/fecha';
 import { Partido } from '../modelo/partido';
@@ -22,11 +22,13 @@ export class EdicionFechaService {
   equiposDisponibles = this.source4.asObservable();
 
   private source5 = new Subject<Partido>();
-  equipoBorrado = this.source5.asObservable();
+  partidoBorrado = this.source5.asObservable();
+
+  private source6 = new BehaviorSubject<string[]>([]);
+  estadosPartidos = this.source6.asObservable();
 
   constructor(
-
-  ) { }
+  ) {}
 
   seleccionarFecha(fecha: Fecha): void {
     this.source.next(fecha);
@@ -60,5 +62,9 @@ export class EdicionFechaService {
       return 0;
     });
     return ret;
+  }
+
+  setEstados(estados:string[]){
+    this.source6.next(estados);
   }
 }

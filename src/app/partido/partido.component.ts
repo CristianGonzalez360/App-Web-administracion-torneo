@@ -19,6 +19,8 @@ export class PartidoComponent implements OnInit {
 
   equipos:Equipo[] = []
   @Input() fecha?:Fecha;
+
+  estados:string[] = [];
   
   constructor(
     private serviciosPartido:PartidoService,
@@ -27,8 +29,9 @@ export class PartidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviciosEdicionFecha.fechaSeleccionada.subscribe(fecha => this.fecha = fecha);
+    this.serviciosEdicionFecha.estadosPartidos.subscribe(estados => this.estados=estados);
     if(this.creacion){
-      this.partido = {golesLocal:0,golesVisitante:0,fechaJugado: new Date()} as Partido;
+      this.partido = {golesLocal:0,golesVisitante:0,fechaJugado: new Date(),estado:"PENDIENTE"} as Partido;
       this.serviciosEdicionFecha.equiposDisponibles.subscribe(equipos => {
         this.equipos = equipos;
         if(this.equipos.length && this.partido){
@@ -71,4 +74,5 @@ export class PartidoComponent implements OnInit {
       });
     }
   }
+
 }

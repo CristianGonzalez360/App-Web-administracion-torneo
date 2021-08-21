@@ -9,4 +9,5 @@ export interface Partido{
     golesVisitante:number;
     fecha:Fecha;
     fechaJugado:Date;
+    estado:string;
 }

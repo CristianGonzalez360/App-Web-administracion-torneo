@@ -8,4 +8,5 @@ export interface FilaTabla{
 	golesAFavor:number;
 	golesEnContra:number;
 	diferenciaGol:number;
+	posicion:number;
 }

@@ -1,0 +1,36 @@
+<div class="container" *ngIf="historial">
+    <h3 class="text-center">{{historial.nombreTorneo}}</h3>
+    <h3 class="text-center">Categoria {{historial.equipo.categoria.nombre}}</h3>
+    <table class="table table-striped table-primary table-hover">
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>PTS</th>
+                <th>PJ</th>
+                <th>G</th>
+                <th>E</th>
+                <th>P</th>
+                <th>GF</th>
+                <th>GC</th>
+                <th>DG</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{historial.totales.nombre}}</td>
+                <td>{{historial.totales.puntos}}</td>
+                <td>{{historial.totales.jugados}}</td>
+                <td>{{historial.totales.ganados}}</td>
+                <td>{{historial.totales.empatados}}</td>
+                <td>{{historial.totales.perdidos}}</td>
+                <td>{{historial.totales.golesAFavor}}</td>
+                <td>{{historial.totales.golesEnContra}}</td>
+                <td>{{historial.totales.diferenciaGol}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <h5>Partidos</h5>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item" *ngFor="let partido of historial.partidos"><app-partido [partido]="partido"></app-partido></li>
+    </ul>
+</div>

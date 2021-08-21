@@ -20,6 +20,7 @@ import { FechaComponent } from './fecha/fecha.component';
 import { PartidoComponent } from './partido/partido.component';
 import { TablaComponent } from './tabla/tabla.component';
 import { GrupoComponent } from './grupo/grupo.component';
+import { HistorialPartidosComponent } from './historial-partidos/historial-partidos.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { GrupoComponent } from './grupo/grupo.component';
     FechaComponent,
     PartidoComponent,
     TablaComponent,
-    GrupoComponent
+    GrupoComponent,
+    HistorialPartidosComponent
   ],
   imports: [
     BrowserModule,

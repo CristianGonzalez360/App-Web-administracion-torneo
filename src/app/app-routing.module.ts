@@ -4,6 +4,7 @@ import { CategoriaFormComponent } from './categoria-form/categoria-form.componen
 import { CategoriasComponent } from './categorias/categorias.component';
 import { EquipoFormComponent } from './equipo-form/equipo-form.component';
 import { EquiposComponent } from './equipos/equipos.component';
+import { HistorialPartidosComponent } from './historial-partidos/historial-partidos.component';
 import { TorneosFormComponent } from './torneo-form/torneo-form.component';
 import { TorneoComponent } from './torneo/torneo.component';
 import { TorneosComponent } from './torneos/torneos.component';
@@ -14,10 +15,11 @@ const routes: Routes = [
   {path : 'categorias/editar/:id' , component:CategoriaFormComponent},
   {path : 'equipos', component:EquiposComponent},
   {path : 'equipos/editar/:id' , component:EquipoFormComponent},
-  {path : 'torneos' , component:TorneosComponent},
-  {path : 'torneos/nuevo', component:TorneosFormComponent},
+  {path : 'torneo' , component:TorneosComponent},
+  {path : 'torneo/nuevo', component:TorneosFormComponent},
   {path : 'torneo/fechas/:id', component:TorneoComponent},
-  {path : 'torneo/editar/:id', component:TorneosFormComponent}
+  {path : 'torneo/editar/:id', component:TorneosFormComponent},
+  {path : 'torneo/historial/:idEquipo/:idTorneo', component:HistorialPartidosComponent}
 ];
 
 @NgModule({

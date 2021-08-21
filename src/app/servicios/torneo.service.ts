@@ -2,6 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { HistorialEquipo } from '../modelo/historialEquipo';
 import { Tabla } from '../modelo/tabla';
 import { Torneo } from '../modelo/torneo';
 
@@ -10,7 +12,7 @@ import { Torneo } from '../modelo/torneo';
 })
 export class TorneoService {
   
-  torneoUrl:string = "http://localhost:8081/torneo";
+  torneoUrl:string = environment.apiUrl + '/torneo';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -56,11 +58,19 @@ export class TorneoService {
     );
   }
 
- getTabla(idTorneo:number):Observable<Tabla[]>{
-   const url = `http://localhost:8081/tabla/${idTorneo}`;
+  getTabla(idTorneo:number):Observable<Tabla[]>{
+   const url = environment.apiUrl + `/tabla/${idTorneo}`;
    return this.http.get<Tabla[]>(url).pipe(
     tap(_ => console.log(`fetched Tabla`)),
     catchError(this.handleError<Tabla[]>(`getTabla`))
-  );
- }
+    );
+  }
+
+  getHistorialTorneo(idEquipo:number, idTorneo:number):Observable<HistorialEquipo>{
+  const url = `${this.torneoUrl}/historialEquipo/${idEquipo}/${idTorneo}`;
+    return this.http.get<HistorialEquipo>(url).pipe(
+     tap(_ => console.log(`fetched Partidos por Equipo y Torneo`)),
+     catchError(this.handleError<HistorialEquipo>('fetch Partidos por Equipo y Torneo'))
+    );
+  }
 }
