@@ -20,6 +20,14 @@ export class TorneosComponent implements OnInit {
 
   }
 
+  borrar(borrado:Torneo){
+
+    this.serviciosTorneo.delete(borrado.id).subscribe(eliminado => 
+      this.torneos = this.torneos.filter(torneo => torneo.id != eliminado.id)
+    )
+    console.log("borrado");
+  }
+
 
 
 }

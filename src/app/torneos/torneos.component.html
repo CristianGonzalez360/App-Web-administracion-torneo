@@ -4,6 +4,7 @@
         <h4 class="d-inline align-middle">Torneo {{torneo.nombre}}</h4>
         <a routerLink="fechas/{{torneo.id}}" class="btn btn-outline-primary m-1">Fechas</a>
         <a routerLink="editar/{{torneo.id}}" class="btn btn-outline-primary m-1">Editar</a>
+        <button (click)="borrar(torneo)" class="btn btn-outline-danger m-1">Borrar</button>
         <div class="card-group">
             <app-grupo *ngFor="let grupo of torneo.grupos" [grupo]="grupo" [idTorneo]="torneo.id"></app-grupo>
         </div>

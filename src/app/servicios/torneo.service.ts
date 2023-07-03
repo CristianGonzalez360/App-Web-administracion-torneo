@@ -73,4 +73,12 @@ export class TorneoService {
      catchError(this.handleError<HistorialEquipo>('fetch Partidos por Equipo y Torneo'))
     );
   }
+
+  delete(idTorneo:number):Observable<Torneo>{
+    const url = `${this.torneoUrl}/${idTorneo}`;
+    return this.http.delete<Torneo>(url, this.httpOptions).pipe(
+      tap(_ => console.log(`deleted Torneo id=${idTorneo}`)),
+      catchError(this.handleError<Torneo>('delete Equipo'))
+    );
+  }
 }
