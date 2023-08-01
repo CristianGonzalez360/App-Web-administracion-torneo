@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Categoria } from '../modelo/categoria';
 import { Equipo } from '../modelo/equipo';
 import { Grupo } from '../modelo/grupo';
+import { Torneo } from '../modelo/torneo';
 import { EquipoService } from './equipo.service';
 
 @Injectable({
@@ -19,6 +20,7 @@ export class EdicionTorneoService {
   private source3 = new Subject<Grupo>();
   grupoBorrado:Observable<Grupo> = this.source3.asObservable();
 
+  private torneo?:Torneo;
   private categoria?:Categoria;
   private equipos:Equipo[]=[];
   
@@ -33,6 +35,7 @@ export class EdicionTorneoService {
   }
 
   quitarEquipo(equipo: Equipo) {
+    console.log(equipo);
     this.equipos = this.equipos.filter(equipo2 => equipo2.id != equipo.id);
     this.source.next(this.equipos);
   }
@@ -46,6 +49,9 @@ export class EdicionTorneoService {
     if (this.categoria) {
       this.servicioEquipos.getEquiposByCategoria(this.categoria).subscribe(equipos => {
         this.equipos = equipos;
+        if(this.torneo){
+          this.torneo.grupos.forEach(grupo => grupo.equipos.forEach(equipo => this.quitarEquipo(equipo)));   
+        }
         this.source.next(this.equipos);
       })
     }
@@ -53,5 +59,10 @@ export class EdicionTorneoService {
 
   quitarGrupo(grupo:Grupo){
     this.source3.next(grupo);
+  }
+
+  setTorneo(torneo:Torneo){
+    this.torneo = torneo;
+
   }
 }

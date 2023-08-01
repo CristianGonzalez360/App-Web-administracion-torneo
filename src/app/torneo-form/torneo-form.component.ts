@@ -40,23 +40,26 @@ export class TorneosFormComponent implements OnInit {
     });
   }
 
-  getTorneo(){
+  getTorneo(): void{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     if(id){
       this.serviciosTorneo.get(id).subscribe(torneo =>{
-        this.torneo=torneo;
-        torneo.grupos.forEach(grupo => grupo.equipos.forEach(equipo => this.serviciosEdicionTorneo.quitarEquipo(equipo)));   
+        this.torneo = torneo;
+        this.serviciosEdicionTorneo.setTorneo(this.torneo);
+        this.seleccionar(this.torneo.categoria);
       });
+    }
+    else{
+      if (this.categorias.length > 0) {
+        this.torneo.categoria = this.categorias[0];
+        this.seleccionar(this.categorias[0]);
+      }
     }
   }
 
   getCategorias(): void {
     this.serviciosCategoria.getAll().subscribe(categorias => {
       this.categorias = categorias;
-      if (this.categorias.length > 0) {
-        this.torneo.categoria = this.categorias[0];
-        this.seleccionar(this.categorias[0]);
-      }
       this.getTorneo();
     });
   }
