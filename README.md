@@ -2,7 +2,7 @@
 
 ![alt text](screenshots/torneos.png)
 ![alt text](screenshots/fechas.png)
-![alt text](screenshots/editar torneos.png)
+![alt text](screenshots/editarTorneos.png)
 ![alt text](screenshots/tablas.png)
 ![alt text](screenshots/partido.png)
 ![alt text](sscreenshots/historial.png)
