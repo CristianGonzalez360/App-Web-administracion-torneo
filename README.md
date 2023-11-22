@@ -5,7 +5,7 @@
 ![alt text](screenshots/editarTorneos.png)
 ![alt text](screenshots/tablas.png)
 ![alt text](screenshots/partido.png)
-![alt text](sscreenshots/historial.png)
+![alt text](screenshots/historial.png)
 ![alt text](screenshots/categorias.png)
 ![alt text](screenshots/equipos.png)
 
