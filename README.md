@@ -1,5 +1,14 @@
 # AdministracionTorneo
 
+![alt text](screenshots/torneos.png)
+![alt text](screenshots/fechas.png)
+![alt text](screenshots/editar torneos.png)
+![alt text](screenshots/tablas.png)
+![alt text](screenshots/partido.png)
+![alt text](sscreenshots/historial.png)
+![alt text](screenshots/categorias.png)
+![alt text](screenshots/equipos.png)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.4.
 
 ## Development server
